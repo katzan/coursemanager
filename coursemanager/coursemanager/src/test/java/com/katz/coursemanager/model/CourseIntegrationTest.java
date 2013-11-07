@@ -116,5 +116,30 @@ public class CourseIntegrationTest {
     	
     }
     
+    @Test
+    public void testPersistTagsInCourses() {
+    	CourseDataOnDemand courseDod = new CourseDataOnDemand();
+    	Course course = courseDod.getNewTransientCourse(0);
+    	course.setListPrice(new BigDecimal("100"));
+    	TagDataOnDemand tagDod = new TagDataOnDemand();
+    	Tag t1 = tagDod.getNewTransientTag(0);
+    	Tag t2 = tagDod.getNewTransientTag(1);
+    	
+    	course.getTags().add(t1);
+    	course.getTags().add(t2);
+    	
+    	t1.getCourses().add(course);
+    	t2.getCourses().add(course);
+    	
+    	t1.persist();
+    	t2.persist();
+    	t2.flush();
+    	t2.clear();
+    	
+    	Assert.assertEquals(2, Course.findCourse(course.getId()).getTags().size());
+    	
+    	
+    }
+    
     
 }

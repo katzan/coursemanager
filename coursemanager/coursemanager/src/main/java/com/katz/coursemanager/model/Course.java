@@ -2,9 +2,14 @@ package com.katz.coursemanager.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
@@ -51,4 +56,10 @@ public class Course {
     @NotNull
     @Enumerated(EnumType.STRING)
     private CourseTypeEnum courseType;
+
+    @ManyToOne
+    private TrainingProgram trainingProgram;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "courses")
+    private Set<Tag> tags = new HashSet<Tag>();
 }

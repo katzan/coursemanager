@@ -5,8 +5,11 @@ package com.katz.coursemanager.model;
 
 import com.katz.coursemanager.model.Course;
 import com.katz.coursemanager.model.CourseTypeEnum;
+import com.katz.coursemanager.model.Tag;
+import com.katz.coursemanager.model.TrainingProgram;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Course_Roo_JavaBean {
     
@@ -56,6 +59,22 @@ privileged aspect Course_Roo_JavaBean {
     
     public void Course.setCourseType(CourseTypeEnum courseType) {
         this.courseType = courseType;
+    }
+    
+    public TrainingProgram Course.getTrainingProgram() {
+        return this.trainingProgram;
+    }
+    
+    public void Course.setTrainingProgram(TrainingProgram trainingProgram) {
+        this.trainingProgram = trainingProgram;
+    }
+    
+    public Set<Tag> Course.getTags() {
+        return this.tags;
+    }
+    
+    public void Course.setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
     
 }

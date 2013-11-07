@@ -34,3 +34,23 @@ finder add --finderName findCoursesByCourseTypeAndRunDateBetween
 repository jpa --interface ~.model.CourseRepository --entity ~.model.Course
 repository jpa --interface ~.repository.CourseRepository --entity ~.model.Course
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-10-26 19:11:33
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-05 22:33:27
+jpa setup --database MYSQL --provider HIBERNATE --hostName localhost --userName alex --password alex
+jpa setup --database MYSQL --provider HIBERNATE --hostName localhost --userName alex --password alex --databaseName coursemanager
+entity jpa --class ~.model.TrainingProgram --testAutomatically
+field string --fieldName name
+field set --fieldName courses --type ~.model.Course --cardinality ONE_TO_MANY --mappedBy trainingProgram
+focus --class ~.model.Course
+field reference --fieldName trainingProgram --type ~.model.TrainingProgram --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Tag --testAutomatically 
+field string --fieldName tag --sizeMin 1 --sizeMax 25 --notNull 
+field string --fieldName description --sizeMax 250 --notNull 
+field set --fieldName courses --type ~.model.Course --cardinality MANY_TO_MANY 
+focus --class ~.model.Course
+field set --fieldName tags --type ~.model.Tag --cardinality MANY_TO_MANY --mappedBy courses
+entity jpa --class ~.model.Person --abstract --inheritanceType TABLE_PER_CLASS 
+entity jpa --class ~.model.Student --extends ~.model.Person --testAutomatically 
+entity jpa --class ~.model.Instructor --extends ~.model.Person --testAutomatically 
+entity jpa --class ~.model.Offering --testAutomatically 
+entity jpa --class ~.model.Registration --testAutomatically 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-11-07 10:53:22

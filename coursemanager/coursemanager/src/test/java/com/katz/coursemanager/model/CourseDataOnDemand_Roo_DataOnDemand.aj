@@ -6,6 +6,7 @@ package com.katz.coursemanager.model;
 import com.katz.coursemanager.model.Course;
 import com.katz.coursemanager.model.CourseDataOnDemand;
 import com.katz.coursemanager.model.CourseTypeEnum;
+import com.katz.coursemanager.model.TrainingProgramDataOnDemand;
 import com.katz.coursemanager.repository.CourseRepository;
 import java.math.BigDecimal;
 import java.security.SecureRandom;
@@ -28,6 +29,9 @@ privileged aspect CourseDataOnDemand_Roo_DataOnDemand {
     private Random CourseDataOnDemand.rnd = new SecureRandom();
     
     private List<Course> CourseDataOnDemand.data;
+    
+    @Autowired
+    TrainingProgramDataOnDemand CourseDataOnDemand.trainingProgramDataOnDemand;
     
     @Autowired
     CourseRepository CourseDataOnDemand.courseRepository;
